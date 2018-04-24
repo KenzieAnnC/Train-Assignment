@@ -8,6 +8,7 @@ var config = {
     storageBucket: "",
     messagingSenderId: "722518752092"
 };
+
 firebase.initializeApp(config);
 
 
@@ -20,7 +21,10 @@ database.ref().on("child_added", function (childSnapshot) {
     console.log("Name ", childSnapshot.val().name);
 
     var newRow = $("<tr>");
-    newRow.append("<td>" + childSnapshot.val().name + "</td>" + "<td>" + childSnapshot.val().destination + "</td>" + "<td>" + childSnapshot.val().time + "</td>" + "<td>" + childSnapshot.val().frequncy + "</td>");
+    newRow.append("<td>" + childSnapshot.val().name + "</td>" + 
+    "<td>" + childSnapshot.val().destination + "</td>" + 
+    "<td>" + childSnapshot.val().time + "</td>" + 
+    "<td>" + childSnapshot.val().frequncy + "</td>");
 
     $(".tbody").append(newRow);
 
@@ -28,10 +32,10 @@ database.ref().on("child_added", function (childSnapshot) {
     console.log("Errors handled: " + errorObject.code);
 });
 
-$(".button").submit(function (event) {
-    return false;
+$(".button").on("click", function (event) {
+    // return false;
     event.preventDefault();
-    //Input Variables from Form
+ 
     console.log("click 1");
     var name = $("#name-input").val().trim();
     var destination = $("#destination-input").val().trim();
