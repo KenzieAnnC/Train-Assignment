@@ -18,15 +18,16 @@ database.ref().on("child_added", function (childSnapshot) {
 
     // Log everything that's coming out of snapshot
 
-    console.log("Name ", childSnapshot.val().name);
+  
 
     var newRow = $("<tr>");
     newRow.append("<td>" + childSnapshot.val().name + "</td>" + 
     "<td>" + childSnapshot.val().destination + "</td>" + 
     "<td>" + childSnapshot.val().time + "</td>" + 
-    "<td>" + childSnapshot.val().frequncy + "</td>");
+    "<td>" + childSnapshot.val().frequncy + "</td>") +
+    "<td>" + childSnapshot.val().minutes + "</td>";
 
-    $(".tbody").append(newRow);
+    $("tbody").append(newRow);
 
 }, function (errorObject) {
     console.log("Errors handled: " + errorObject.code);
@@ -36,7 +37,6 @@ $(".button").on("click", function (event) {
     // return false;
     event.preventDefault();
  
-    console.log("click 1");
     var name = $("#name-input").val().trim();
     var destination = $("#destination-input").val().trim();
     var time = $("#time-input").val().trim();
@@ -48,4 +48,5 @@ $(".button").on("click", function (event) {
         time: time,
         frequncy: frequncy
     });
+
 });
