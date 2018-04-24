@@ -16,16 +16,13 @@ var database = firebase.database();
 
 database.ref().on("child_added", function (childSnapshot) {
 
-    // Log everything that's coming out of snapshot
-
-  
-
     var newRow = $("<tr>");
-    newRow.append("<td>" + childSnapshot.val().name + "</td>" + 
+    newRow.append(
+    "<td>" + childSnapshot.val().name + "</td>" + 
     "<td>" + childSnapshot.val().destination + "</td>" + 
-    "<td>" + childSnapshot.val().time + "</td>" + 
-    "<td>" + childSnapshot.val().frequncy + "</td>") +
-    "<td>" + childSnapshot.val().minutes + "</td>";
+    "<td>" + childSnapshot.val().frequncy + "</td>" +
+    "<td>" + childSnapshot.val().nextArrival + "</td>" +
+    "<td>" + childSnapshot.val().minutesAwaay + "</td>");
 
     $("tbody").append(newRow);
 
@@ -41,6 +38,8 @@ $(".button").on("click", function (event) {
     var destination = $("#destination-input").val().trim();
     var time = $("#time-input").val().trim();
     var frequncy = $("#frequency-input").val().trim();
+    var nextArrival = "";
+    var minutesAway = "";
 
     database.ref().push({
         name: name,
