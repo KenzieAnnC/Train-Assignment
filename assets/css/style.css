@@ -1,0 +1,41 @@
+.jumbotron {
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    background: rgb(157, 193, 194);
+    
+}
+
+body {
+    font-family: 'Slabo 27px', serif;
+    background-image: url("../images/background.png");
+}
+
+.container {
+    width: 65%;
+    border: black;
+    border-width: 1px;
+    border-style: solid;
+    padding: 0%;
+    border-radius: 10px;
+}
+
+.head {
+    background: black;
+    color: white;
+    padding: 10px;
+    border-radius: 10px 10px 0px 0px;
+}
+
+
+.form-group {
+    padding: 10px;
+}
+
+.button {
+    padding: 10px;
+}
+
+.btn {
+    background-color: black;
+    color: white;
+}
