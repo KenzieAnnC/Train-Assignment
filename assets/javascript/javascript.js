@@ -36,16 +36,23 @@ $(".button").on("click", function (event) {
  
     var name = $("#name-input").val().trim();
     var destination = $("#destination-input").val().trim();
-    var time = $("#time-input").val().trim();
-    var frequncy = $("#frequency-input").val().trim();
-    var nextArrival = "";
+    var firstTrainTime = moment($("#time-input").val().trim(), "HH:mm");
+    var frequncy = moment($("#frequency-input").val().trim(), "m");
+    var nextArrival = moment(firstTrainTime).add(frequncy);
+
+
+    console.log(firstTrainTime);
+
+
     var minutesAway = "";
 
     database.ref().push({
         name: name,
         destination: destination,
-        time: time,
-        frequncy: frequncy
+        time: firstTrainTime,
+        frequncy: frequncy,
+        time: firstTrainTime,
+        arrival: nextArrival
     });
 
 });
