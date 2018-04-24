@@ -6,8 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>TRAINZ</title>
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Oswald|Slabo+27px" rel="stylesheet">
 
@@ -56,17 +60,7 @@
                     <td>Content</td>
                     <td>Content</td>
                     <td>Content</td>
-
                 </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Content</td>
-                    <td>Content</td>
-                    <td>Content</td>
-                    <td>Content</td>
-                    <td>Content</td>
-                </tr>
-
             </tbody>
         </table>
     </div>
@@ -77,23 +71,23 @@
         </div>
         <form>
             <div class="form-group">
-                <label for="exampleInputEmail1">Train Name</label>
-                <input class="form-control" id="exampleInputEmail1">
+                <label for="trainName">Train Name</label>
+                <input class="form-control" id="name-input">
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">Destination</label>
-                <input class="form-control" id="exampleInputEmail1">
+                <label for="destination">Destination</label>
+                <input class="form-control" id="destination-input">
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">First Train Name (HH:mm - Military Time)</label>
-                <input class="form-control" id="exampleInputEmail1">
+                <label for="trainTime">First Train Time (HH:mm - Military Time)</label>
+                <input class="form-control" id="time-input">
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">Frequency (min)</label>
-                <input class="form-control" id="exampleInputEmail1">
+                <label for="frequency">Frequency (min)</label>
+                <input class="form-control" id="frequency-input">
             </div>
             <div class="button">
-            <button type="submit" class="btn">Submit</button>
+                <button type="submit" class="btn">Submit</button>
             </div>
         </form>
     </div>
