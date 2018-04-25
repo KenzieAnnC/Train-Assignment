@@ -37,8 +37,8 @@ $(".button").on("click", function (event) {
     var name = $("#name-input").val().trim();
     var destination = $("#destination-input").val().trim();
     var firstTrainTime = moment($("#time-input").val().trim(), "HH:mm").format("HH:mm");
-    var frequency = moment($("#frequency-input").val().trim(), "m").format("m");
-    var nextArrival = moment(firstTrainTime).add(frequency);
+    var frequency = moment($("#frequency-input").val().trim()).format("m");
+    var nextArrival = moment(firstTrainTime) + (frequency);
 
 
     console.log(nextArrival);
