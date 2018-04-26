@@ -14,57 +14,68 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
-database.ref().on("child_added", function (childSnapshot) {
 
-    var newRow = $("<tr>");
-    newRow.append(
-    "<td>" + childSnapshot.val().name + "</td>" + 
-    "<td>" + childSnapshot.val().destination + "</td>" + 
-    "<td>" + childSnapshot.val().frequency + "</td>" +
-    "<td>" + childSnapshot.val().nextArrival + "</td>" +
-    "<td>" + childSnapshot.val().minutesAwaay + "</td>");
 
-    $("tbody").append(newRow);
-
-}, function (errorObject) {
-    console.log("Errors handled: " + errorObject.code);
-});
 
 $(".button").on("click", function (event) {
-    // return false;
+  
     event.preventDefault();
- 
     var name = $("#name-input").val().trim();
     var destination = $("#destination-input").val().trim();
+
+   
     
-    // fix firstTrainTime, "NaN30" //
-    var firstTrainTime = moment($("#time-input").val().trim(), "HH:mm").subtract(1, "years");
 
     var frequency = $("#frequency-input").val().trim();
-    console.log(frequency);
+
+    var firstTrainTime = moment($("#time-input").val().trim(), "HH:mm").subtract(1, "years");
 
     var currentTime = moment();
 
     var diffTime = moment().diff(moment(firstTrainTime), "minutes");
 
     var tRemainder = diffTime % frequency;
-    console.log("REMAINDER " + tRemainder);
 
     var minutesAway = frequency - tRemainder;
-    console.log("MINUTES AWAY " + minutesAway);
 
     var nextArrival = moment().add(minutesAway, "minutes").format("HH:mm");
-    console.log(nextArrival);
-   
 
-
-    database.ref().push({
+    var newTrain = {
         name: name,
         destination: destination,
-        time: firstTrainTime,
         frequency: frequency,
-        arrival: nextArrival,
-        away: minutesAway
-    });
+        nextArrival: nextArrival,
+        minutesAway: minutesAway
+    }
+
+    database.ref().push(newTrain);
+    $("#name-input").val("");
+    $("#destination-input").val("");
+    $("#frequency-input").val("");
+    $("#time-input").val("");
+    
+
+
+});
+
+database.ref().on("child_added", function (childSnapshot, prevChildKey) {
+
+
+    var name = childSnapshot.val().name;
+    var destination = childSnapshot.val().destination;
+    var frequency = childSnapshot.val().frequency;
+    var nextArrival = childSnapshot.val().nextArrival;
+    var minutesAway = childSnapshot.val().minutesAway;
+
+    $("tbody").append(
+    "<tr><td>" + name + 
+    "</td><td>" + destination + 
+    "</td><td>" + frequency + 
+    "</td><td>" + nextArrival + 
+    "</td><td>" + minutesAway +  
+    "</td></tr>");
+
+}, function (errorObject) {
+    console.log("Errors handled: " + errorObject.code);
 
 });
