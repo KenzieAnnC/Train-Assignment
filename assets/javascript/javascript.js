@@ -11,10 +11,7 @@ var config = {
 
 firebase.initializeApp(config);
 
-
 var database = firebase.database();
-
-
 
 
 $(".button").on("click", function (event) {
@@ -22,10 +19,6 @@ $(".button").on("click", function (event) {
     event.preventDefault();
     var name = $("#name-input").val().trim();
     var destination = $("#destination-input").val().trim();
-
-   
-    
-
     var frequency = $("#frequency-input").val().trim();
 
     var firstTrainTime = moment($("#time-input").val().trim(), "HH:mm").subtract(1, "years");
