@@ -53,7 +53,7 @@ $(".button").on("click", function (event) {
     var minutesAway = frequency - tRemainder;
     console.log("MINUTES AWAY " + minutesAway);
 
-    var nextArrival = moment().add(minutesAway, "minutes");
+    var nextArrival = moment().add(minutesAway, "minutes").format("HH:mm");
     console.log(nextArrival);
    
 
