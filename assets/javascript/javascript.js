@@ -20,7 +20,7 @@ database.ref().on("child_added", function (childSnapshot) {
     newRow.append(
     "<td>" + childSnapshot.val().name + "</td>" + 
     "<td>" + childSnapshot.val().destination + "</td>" + 
-    "<td>" + childSnapshot.val().freqeuncy + "</td>" +
+    "<td>" + childSnapshot.val().frequency + "</td>" +
     "<td>" + childSnapshot.val().nextArrival + "</td>" +
     "<td>" + childSnapshot.val().minutesAwaay + "</td>");
 
@@ -36,9 +36,12 @@ $(".button").on("click", function (event) {
  
     var name = $("#name-input").val().trim();
     var destination = $("#destination-input").val().trim();
-    var firstTrainTime = moment($("#time-input").val().trim(), "HH:mm").format("HH:mm");
-    var frequency = moment($("#frequency-input").val().trim()).format("m");
-    var nextArrival = moment(firstTrainTime) + (frequency);
+    
+    // fix firstTrainTime, "NaN30" //
+    var firstTrainTime = moment($("#time-input").val().trim(), "HH:mm")._i;
+    var frequency = moment($("#frequency-input").val().trim(), "m").format("m");
+    var nextArrival = moment(firstTrainTime).add(frequency);
+    
 
 
     console.log(nextArrival);
